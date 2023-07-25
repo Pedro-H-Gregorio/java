@@ -11,19 +11,21 @@ public class Quest1048 {
         Double readjustment = (double) 0;
 
         for(Integer i = 0; i<=4; i++){
-            if(salary>variation[i] && variation[i] != 0 && salary<=variation[i++]){
+            boolean condition_base = salary > variation[i] && salary <= variation[i + 1];
+            if(condition_base && variation[i + 1] != 0){
                 percentage_add = percentage[i];
                 readjustment = (salary * percentage_add/100);
                 new_salary = salary + readjustment;
-            } else if (variation[++i] == 0.00 ) {
+                break;
+            } else if (variation[1 + i] == 0.00 ) {
                 percentage_add = percentage[i];
-                readjustment = (salary * (4/100));
+                readjustment = (salary * 4/100);
                 new_salary = salary + readjustment;
                 break;
             }
         }
 
-        System.out.printf("Novo salario: %.2f\n" + "Reajuste ganho: %.2f\n"+ "Em percentual: %d %%",new_salary,readjustment,percentage_add);
+        System.out.printf("Novo salario: %.2f\n" + "Reajuste ganho: %.2f\n"+ "Em percentual: %d %%\n",new_salary,readjustment,percentage_add);
 
     }
 }
